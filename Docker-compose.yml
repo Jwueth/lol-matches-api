@@ -1,0 +1,16 @@
+  lol-matches-api:
+    image: johnsonparsons/lol-matches-api:latest
+    container_name: lol-matches-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PANDASCORE_API_KEY=${PANDASCORE_API_KEY}
+      - LOCAL_TZ=Europe/Zurich
+    env_file:
+      - .env
+    volumes:
+      - ./static:/app/static
+      - ./matches_cache.json:/app/matches_cache.json
+    restart: unless-stopped
+    networks:
+      - localnet
